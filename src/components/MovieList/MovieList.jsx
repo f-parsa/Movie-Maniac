@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./MovieList.css";
+
 import Fire from "../../assets/fire.png";
 import MovieCard from "./MovieCard";
 import FilterGroup from "./FilterGroup";
+import _ from 'lodash'
 
 const MovieList = () => {
   const [movies, setmovies] = useState([]);
@@ -17,6 +19,13 @@ const MovieList = () => {
     fetchMovies();
     // fetch('https://api.themoviedb.org/3/movie/popular?api_key=83837907fa5c7cdbc976c9e12ca2c412').then((res) => res.json()).then((data) => console.log(data))
   }, []);
+
+  useEffect(() => {
+    if(sort.by !== "default"){
+      const sortedMovies = _.orderBy(filterMovies, [sort.by], [sort.order])
+      setfilterMovies(sortedMovies)
+    }
+  }), [sort]
 
   const fetchMovies = async () => {
     const response = await fetch(
@@ -43,7 +52,6 @@ const MovieList = () => {
     setSort(prev => ({...prev, [name]: value}))
   }
 
-  console.log(sort);
 
   return (
     <section className="movie_list">
