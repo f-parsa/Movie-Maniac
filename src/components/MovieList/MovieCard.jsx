@@ -1,10 +1,11 @@
 import React from "react";
 import Star from "../../assets/star.png";
 import "./MovieCard.css";
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
   return (
-    <a href={`https://www.themoviedb.org/movie/${movie.id}`} target="_blank" className="movie_card">
+    <Link to={`/movie/${movie.id}`} target="_blank" className="movie_card">
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt="movie poster"
@@ -23,7 +24,7 @@ const MovieCard = ({ movie }) => {
           {movie.overview.slice(0, 100) + "..."}
         </p>
       </div>
-    </a>
+    </Link>
   );
 };
 

@@ -17,7 +17,7 @@ const MovieList = ({ type, title, emoji }) => {
   useEffect(() => {
     fetchMovies();
     // fetch('https://api.themoviedb.org/3/movie/popular?api_key=83837907fa5c7cdbc976c9e12ca2c412').then((res) => res.json()).then((data) => console.log(data))
-  }, []);
+  }, [type]);
 
   useEffect(() => {
     if (sort.by !== "default") {
@@ -58,7 +58,8 @@ const MovieList = ({ type, title, emoji }) => {
     <section className="movie_list" id={type}>
       <header className="align_center movie_list_header">
         <h2 className="align_center movie_list_heading">
-          {title} <img src={emoji} alt={`${emoji} icon`} className="navbar_emoji" />
+          {title}{" "}
+          <img src={emoji} alt={`${emoji} icon`} className="navbar_emoji" />
         </h2>
         <div className="align_center movie_list_fs">
           <FilterGroup
